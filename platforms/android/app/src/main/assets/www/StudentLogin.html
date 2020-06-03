@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Login</title>
+
+	<!-- Css -->
+	<link rel="stylesheet" type="text/css" href="css/studentLogin.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	
+    <!-- Js -->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js" ></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+	<img class="wave" src="img/wave.png">
+	<div class="container">
+		<div class="img">
+			<img src="img/bg.svg">
+		</div>
+		<div class="login-content">
+			<form id="student_login">
+				<h3>Student Login</h3>
+				<br>
+				<img src="img/avatar.svg">
+						<br><br>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Username</h5>
+           		   		<input type="text" name="username" id="username" class="input" required>
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Password</h5>
+           		    	<input type="password" name="password" class="input" required>
+            	   </div>
+            	</div>
+				<input type="submit" class="btn" name="login" value="login">
+				<div class="div">
+					<a href="register.html">Create Account</a>
+			</div>
+            </form>
+        </div>
+	</div>
+	
+
+
+	<script>
+
+		$(document).ready(function(){
+	
+			// Sent student info to server
+	
+			$("#student_login").one('submit',function(event){
+				event.preventDefault(); 
+				var form_data = new FormData(this);
+				$.ajax({
+					url : 'http://www.staytouch.in/placement/server.php?student=login',
+					type: 'POST',
+					data : form_data,
+					contentType: false,
+					cache: false,
+					processData:false
+				}).done(function(response){ 
+					if(response=='accepted')
+					{
+						window.location.href = 'Student.html?user='+$('#username').val();
+
+					}
+					else
+					{
+						alert("Incorrect User Name or Password");
+						location.reload();
+
+					}
+	
+				});
+			});	
+
+	
+		});
+	
+	
+		</script>
+		<script src="js/studentLogin.js"></script>
+
+</body>
+</html>

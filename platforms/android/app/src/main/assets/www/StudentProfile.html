@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Profile</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="css/sb-admin.min.css" rel="stylesheet">
+
+    <!-- Js  -->
+      <!-- Bootstrap core JavaScript-->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
+
+
+  </head>
+
+  <body class="bg-light">
+
+   <nav class="navbar navbar-expand navbar-dark static-top" style="background-color: #1A98D8;">
+
+      <a class="navbar-brand mr-1" href="Company.html">Student Profile</a>
+
+      <!-- Navbar -->
+      <ul class="navbar-nav ml-auto ml-md-0">
+        
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-sign-out-alt"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="index.html" >Logout</a>
+          </div>
+        </li>
+      </ul>
+
+    </nav>
+
+    <div class="container">
+
+      <div class="row">
+        
+        <div class="col-md-8 order-md-1">
+            <br>
+          
+              <div class="mb-3">
+                <label for="Name">Name :</label> 
+                <span id="Name"></span>
+               
+              </div>
+
+              <div class="mb-3">
+                <label for="Email">Email :</label> 
+                <span id="Email"></span>
+               
+              </div>
+              <div class="mb-3">
+                <label for="Mobile">Mobile :</label> 
+                <span id="Mobile"></span>
+               
+              </div>
+             
+              
+              <div class="mb-3">
+                <label for="DOB">Date of Birth :</label> 
+                <span id="DOB"></span>
+               
+              </div>
+
+              <div class="mb-3">
+                <label for="Gender">Gender :</label> 
+                <span id="Gender"></span>
+               
+              </div>
+              <div class="mb-3">
+                <label for="Address">Address :</label> 
+                <span id="Address"></span>
+               
+              </div>
+              <div class="mb-3">
+                <label for="firstName">Location :</label> 
+                <span id="Location"></span>
+               
+              </div>
+              <div class="mb-3">
+                <label for="firstName">Department :</label> 
+                <span id="Department"></span>
+               
+              </div>
+
+              <div class="mb-3">
+                <label for="Year">Passed Out :</label> 
+                <span id="Year"></span>
+               
+              </div>
+
+
+              <div class="mb-3">
+                <label for="AOI">Area of Intrest :</label> 
+                <span id="AOI"></span>
+               
+              </div>
+
+
+              <div class="mb-3">
+                <label for="SSLC">SSLC In % :</label> 
+                <span id="SSLC"></span>
+               
+              </div>
+              <div class="mb-3">
+                <label for="HSC">HSC In % :</label> 
+                <span id="HSC"></span>
+               
+              </div>
+              <div class="mb-3">
+                <label for="CGP">CGP In college :</label> 
+                <span id="CGP"></span>
+               
+              </div>
+              <div class="mb-3">
+                <label for="HOA">History of Arrear :</label> 
+                <span id="HOA"></span>
+               
+              </div>
+              <div class="mb-3">
+                <label for="Time">Registerd Time :</label> 
+                <span id="Time"></span>
+               
+              </div>
+            
+             
+        </div>
+      </div>
+
+    </div>
+    
+    <style>
+        label
+        {
+            font-weight:600;
+        }
+    </style>
+    <script>
+
+        
+
+    $(document).ready(function(){
+
+     // GET URL parm
+
+      $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        return results[1] || 0;
+        }
+
+        $('#Email').append($.urlParam('user'));
+
+
+        $.get('http://www.staytouch.in/placement/server.php?student=profile&user='+$.urlParam('user'),function(data){
+            var notify=JSON.parse(data);
+            $('#Name').append(notify[0].Name)
+            $('#Mobile').append(notify[0].Mobile)
+            $('#DOB').append(notify[0].DOB)
+            $('#Gender').append(notify[0].Gender)
+            $('#Address').append(notify[0].Address)
+            $('#Location').append(notify[0].Location)
+            $('#Department').append(notify[0].Department)
+            $('#Year').append(notify[0].Year)
+            $('#AOI').append(notify[0].AOI)
+            $('#SSLC').append(notify[0].SSLC)
+            $('#HSC').append(notify[0].HSC)
+            $('#CGP').append(notify[0].CGP)
+            $('#HOA').append(notify[0].HOA)
+            $('#Time').append(notify[0].Time)
+           
+          
+            
+                
+            
+            })
+
+
+
+
+    });
+
+
+    </script>
+
+  </body>
+</html>

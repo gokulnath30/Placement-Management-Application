@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Student Register</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Js  -->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js" ></script>
+    <script src="js/bootstrap.min.js"></script>
+    
+
+  </head>
+
+  <body class="bg-light">
+
+    <div class="container">
+
+      <div class="row">
+        
+        <div class="col-md-8 order-md-1">
+            <br>
+          <h4 class="mb-3" style="text-align: center;">Companies Register</h4>
+          <form id="company_form">
+
+              <div class="mb-3">
+                <label for="firstName">Company Name</label>
+                <input type="text" class="form-control" id="companyname" name="companyname"  required>
+
+              </div>
+
+               <div class="mb-3">
+                <label for="firstName">HR Name</label>
+                <input type="text" class="form-control" id="hrname  " name="hrname"  required>
+
+              </div>
+
+            <div class="mb-3">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
+            </div>
+
+
+            <div class="mb-3">
+                <label for="mobile">Contact No</label>
+                <div class="input-group">
+                  <input type="Number" class="form-control"  maxlength="10" size="10" name="Contact" id="Contact" required>
+                 
+                </div>
+              </div>
+
+
+            <div class="mb-3">
+              <label for="address">Address</label>
+              <textarea style="resize:none" class="form-control" name="address" id="address"  rows="5" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="Location">Location</label>
+                <input type="text" class="form-control" id="Location" name="Location" required>
+            </div>
+            
+              <div class="mb-3">
+                <label for="department">No of Employees</label>
+                <input type="text" class="form-control" id="Employees" name="Employees" required>
+              </div>
+             
+              <div class="mb-3">
+                <label for="aoi">Industry</label>
+                <select class="custom-select d-block w-100" id="companyType" name="companyType" required>
+                    <option value="">Choose...</option>
+                    <option value="Software Development">Software Development</option>
+                    <option value="IT services">IT services</option>
+                    <option value="BPO">BPO</option>
+                    <option value="Product Based">Product Based</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                  </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="Password">Password</label>
+                <input type="Password" class="form-control" name="Password" id="Password" required>
+              </div>
+
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <footer class="my-2 pt-2 text-muted text-center text-small">
+        
+      </footer>
+    </div>
+    
+    <script>
+
+    $(document).ready(function(){
+
+        // Sent Company info to server
+
+        $("#company_form").one('submit',function(event){
+            event.preventDefault(); 
+            var form_data = new FormData(this);
+            $.ajax({
+                url : 'http://www.staytouch.in/placement/server.php?company=reg',
+                type: 'POST',
+                data : form_data,
+                contentType: false,
+                cache: false,
+                processData:false
+            }).done(function(response){ 
+                if(response=='1')
+                     window.location.href = 'CompaniesLogin.html';
+                else
+                    alert('Not Submited');
+
+            });
+        });
+
+
+
+
+
+
+    });
+
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Student Register</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Js  -->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js" ></script>
+    <script src="js/bootstrap.min.js"></script>
+    
+
+  </head>
+
+  <body class="bg-light">
+
+    <div class="container">
+
+      <div class="row">
+        
+        <div class="col-md-8 order-md-1">
+            <br>
+          <h4 class="mb-3" style="text-align: center;">Student Register</h4>
+          <form id="student_form">
+
+              <div class="mb-3">
+                <label for="firstName">Full Name</label>
+                <input type="text" class="form-control" id="fullname" name="fullname"  required>
+
+              </div>
+
+            <div class="mb-3">
+              <label for="email">Email </label>
+              <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
+            </div>
+
+
+            <div class="mb-3">
+                <label for="mobile">Mobile</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">+91</span>
+                  </div>
+                  <input type="Number" class="form-control"  maxlength="10" size="10" name="mobile" id="mobile" required>
+                 
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="dob">Date of Birth</label>
+                <input type="date" class="form-control" name="dob" id="dob"  rows="5" required >
+              </div>
+
+
+              <label>Gender</label>
+              <div class="col-md-6 mb-3">
+                <div class="custom-control custom-radio">
+                  <input id="male" name="gender" value="male" type="radio" class="custom-control-input" required>
+                  <label class="custom-control-label" for="male">Male</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input id="female" name="gender"  value="female"  type="radio" class="custom-control-input" required>
+                  <label class="custom-control-label" for="female">Female</label>
+                </div>
+  
+                <div class="custom-control custom-radio">
+                  <input id="other" name="gender" value="others" type="radio" class="custom-control-input" required>
+                  <label class="custom-control-label"  for="other">Others</label>
+                </div>
+              </div>    
+
+
+            <div class="mb-3">
+              <label for="address">Address</label>
+              <textarea style="resize:none" class="form-control" name="address" id="address"  rows="5" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="Location">Location</label>
+                <input type="text" class="form-control" id="Location" name="Location" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="department">Department</label>
+                <input type="text" class="form-control" id="department" name="department" required>
+              </div>
+             
+              <div class="mb-3">
+                <label for="department">Year</label>
+                <input type="text" class="form-control" id="year" name="year" required>
+              </div>
+             
+              <div class="mb-3">
+                <label for="aoi">Area of Interest</label>
+                <select class="custom-select d-block w-100" id="aoi" name="aoi" required>
+                    <option value="">Choose...</option>
+                    <option value="Software Developer">Software Developer</option>
+                    <option value="Software Tester">Software Tester</option>
+                    <option value="Data Analist">Data Analist</option>
+                    <option value="Network Engineer">Network Engineer</option>
+                    <option value="Network Administrator">Network Administrator</option>
+                    <option value="Customer Support ">Customer Support</option>
+                    <option value="Digital Marketing">Digital Marketing</option>
+                  
+                  </select>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="sslc">SSLC Marks In %</label>
+                <input type="Number" class="form-control" step="0.01" min="0" max="10" name="sslc" id="sslc" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="zip">HSC Marks In %</label>
+                <input type="Number" class="form-control" step="0.01" min="0" max="10" name="hsc" id="hsc"  required>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="cgp">CGP Points</label>
+                <input type="Number" class="form-control" step="0.01" min="0" max="10" name="cgp" id="cgp" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="pg">History of Arrear</label>
+                <select class="custom-select d-block w-100" id="hoa" name="hoa" required>
+                    <option value="">Choose...</option>
+                    <option value="yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="Password">Password</label>
+                <input type="Password" class="form-control" name="Password" id="Password" required>
+              </div>
+
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <footer class="my-2 pt-2 text-muted text-center text-small">
+        
+      </footer>
+    </div>
+    
+    <script>
+
+    $(document).ready(function(){
+
+        // Sent student info to server
+
+        $("#student_form").one('submit',function(event){
+            event.preventDefault(); 
+            var form_data = new FormData(this);
+            $.ajax({
+                url : 'http://www.staytouch.in/placement/server.php?student=regi',
+                type: 'POST',
+                data : form_data,
+                contentType: false,
+                cache: false,
+                processData:false
+            }).done(function(response){ 
+                if(response=='1')
+                    window.location.href = 'StudentLogin.html';
+                else
+                    alert('Not Submited');
+
+            });
+        });
+
+
+
+
+
+
+
+
+
+    });
+
+
+    </script>
+
+  </body>
+</html>
